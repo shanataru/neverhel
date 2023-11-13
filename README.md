@@ -1,2 +1,2 @@
 # neverhel
- 2D game in made in Godot
+ 2D game made in Godot
