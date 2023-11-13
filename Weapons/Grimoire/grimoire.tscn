@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bunyd8shmuaa5"]
+
+[ext_resource type="PackedScene" uid="uid://bs8w2f0prflwv" path="res://Weapons/AbstractClass/firing_weapon.tscn" id="1_27ogd"]
+[ext_resource type="PackedScene" uid="uid://b24kqp7sbyv1a" path="res://Weapons/Grimoire/sp_fireball.tscn" id="2_uijgk"]
+
+[node name="Grimoire" instance=ExtResource("1_27ogd")]
+bullet_scene = ExtResource("2_uijgk")
+
+[node name="Timer" parent="." index="0"]
+autostart = true

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://otw41m56tfll"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_kq4j8"]
+[ext_resource type="PackedScene" uid="uid://dp25e17a8gyf" path="res://Player/player.tscn" id="2_q6lo8"]
+[ext_resource type="PackedScene" uid="uid://6o8xsdc4tm6d" path="res://Weapons/arsenal.tscn" id="3_vp6yk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtkqs"]
+size = Vector2(480.5, 20)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_kq4j8")
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(240, 600)
+
+[node name="Player" parent="." instance=ExtResource("2_q6lo8")]
+
+[node name="Arsenal" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_vp6yk")]
+player = NodePath("../Player")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(239.75, 109)
+shape = SubResource("RectangleShape2D_wtkqs")
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D"]
+offset_left = 1.0
+offset_top = 99.0
+offset_right = 480.0
+offset_bottom = 119.0
+
+[connection signal="special_used" from="Player" to="Arsenal" method="_on_player_special_used"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://70wr6qcv27nt"]
+
+[ext_resource type="Script" path="res://Weapons/AbstractClass/bullet.gd" id="1_nc5ob"]
+
+[node name="Bullet" type="Area2D" groups=["bullets"]]
+rotation = -1.5708
+script = ExtResource("1_nc5ob")
+metadata/_edit_group_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0kek36xak8dg"]
+
+[ext_resource type="PackedScene" uid="uid://d4a0nv7t2xt2k" path="res://Weapons/AbstractClass/special.tscn" id="1_a1ixq"]
+[ext_resource type="PackedScene" uid="uid://cfbj45qn3vdo7" path="res://Weapons/S_FireBombs/sp_fire_bombs.tscn" id="2_85l5p"]
+
+[node name="SpecialSkill" instance=ExtResource("1_a1ixq")]
+particle_scene = ExtResource("2_85l5p")
+
+[node name="SpecialDuration" type="Timer" parent="." index="0"]
+wait_time = 1.8
+one_shot = true

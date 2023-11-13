@@ -1,0 +1,81 @@
+[gd_scene load_steps=16 format=3 uid="uid://dp25e17a8gyf"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_kd0jn"]
+[ext_resource type="Shader" path="res://flash.gdshader" id="2_j3so6"]
+[ext_resource type="Texture2D" uid="uid://ddb15kjdejxxc" path="res://Assets/Sprites2D/Eleonore/Idle/Idle1.png" id="3_ek7qv"]
+[ext_resource type="Texture2D" uid="uid://cd1r7prmibmpj" path="res://Assets/Sprites2D/Eleonore/Idle/Idle2.png" id="4_ig6gw"]
+[ext_resource type="Texture2D" uid="uid://bw85jsqc43r64" path="res://Assets/Sprites2D/Eleonore/Idle/Idle3.png" id="5_hlc8c"]
+[ext_resource type="Texture2D" uid="uid://c7if6cqw8nqe7" path="res://Assets/Sprites2D/Eleonore/Idle/Idle4.png" id="6_jtu0x"]
+[ext_resource type="Texture2D" uid="uid://cs871yxgqirfi" path="res://Assets/Sprites2D/Eleonore/Idle/Idle5.png" id="7_aof7u"]
+[ext_resource type="Texture2D" uid="uid://e4wgl62jnfgs" path="res://Assets/Sprites2D/Eleonore/Idle/Idle6.png" id="8_tjbtc"]
+[ext_resource type="Texture2D" uid="uid://bfdtslyrvdwr2" path="res://Assets/Sprites2D/Eleonore/Idle/Idle7.png" id="9_7jlg7"]
+[ext_resource type="Texture2D" uid="uid://deawa8vtdx3k5" path="res://Assets/Sprites2D/Eleonore/Idle/Idle8.png" id="10_3djic"]
+[ext_resource type="Texture2D" uid="uid://bcblax4gs5k6a" path="res://Assets/Sprites2D/Eleonore/Idle/Idle9.png" id="11_dkxft"]
+[ext_resource type="Texture2D" uid="uid://dxalwoj7lw2u4" path="res://Assets/Sprites2D/center_point.png" id="12_nbbfa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s8hxn"]
+resource_local_to_scene = true
+shader = ExtResource("2_j3so6")
+shader_parameter/flash_color = Color(0.329412, 0.341176, 0.509804, 1)
+shader_parameter/flash_intensity = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1y2ts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ek7qv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ig6gw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hlc8c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jtu0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_aof7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tjbtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7jlg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3djic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_dkxft")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 9.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7yf6f"]
+radius = 3.82031
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_kd0jn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_s8hxn")
+sprite_frames = SubResource("SpriteFrames_1y2ts")
+animation = &"idle"
+frame_progress = 0.30641
+
+[node name="AfterimageTimer" type="Timer" parent="AnimatedSprite2D"]
+wait_time = 0.1
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 2)
+shape = SubResource("CircleShape2D_7yf6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("12_nbbfa")
+
+[connection signal="timeout" from="AnimatedSprite2D/AfterimageTimer" to="." method="_on_afterimage_timer_timeout"]

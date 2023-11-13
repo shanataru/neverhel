@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://cltufcmv54wx6"]
+
+[ext_resource type="Shader" path="res://flash.gdshader" id="1_i0qj0"]
+[ext_resource type="Texture2D" uid="uid://djml4u8n1m4qm" path="res://Assets/Sprites2D/ducky_3_spritesheet.png" id="2_jhtc1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p7mpd"]
+resource_local_to_scene = true
+shader = ExtResource("1_i0qj0")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_intensity = 0.478
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww08r"]
+atlas = ExtResource("2_jhtc1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1b4i"]
+atlas = ExtResource("2_jhtc1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_210bu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww08r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1b4i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="ducky" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_p7mpd")
+sprite_frames = SubResource("SpriteFrames_210bu")
+frame_progress = 0.0153761

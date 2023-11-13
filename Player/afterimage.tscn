@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjwi66bdgorab"]
+
+[ext_resource type="Script" path="res://Player/Afterimage.gd" id="1_i722r"]
+[ext_resource type="Shader" path="res://flash.gdshader" id="1_jqfnp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ysiu3"]
+shader = ExtResource("1_jqfnp")
+shader_parameter/flash_color = Color(0.219608, 0.227451, 0.356863, 1)
+shader_parameter/flash_intensity = 0.794
+
+[node name="Afterimage" type="Sprite2D"]
+z_index = -1
+z_as_relative = false
+material = SubResource("ShaderMaterial_ysiu3")
+script = ExtResource("1_i722r")
