@@ -240,11 +240,8 @@ shape = SubResource("CircleShape2D_ewmwt")
 
 [node name="SecondaryAnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
 rotation = 1.36675
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_6ijyv")
 autoplay = "default"
-frame = 15
-frame_progress = 1.0
 
 [node name="MainAnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = SubResource("SpriteFrames_rwpty")
