@@ -3,8 +3,11 @@ extends Area2D
 signal player_hit
 signal special_used
 
-@export var speed = 300
+var player_arsenal_scene = preload("res://Weapons/arsenal.tscn")
+
+@export var movement_speed = 300
 var screen_size
+var arsenal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,13 +36,13 @@ func move_player(delta):
 		
 	if velocity.x != 0:
 		if velocity.x < 0:
-			scale.x = -1
+			scale.x = -1 * abs(scale.x)
 			#afterimage()
 		else:
-			scale.x = 1
+			scale.x = abs(scale.x)
 			#afterimage()
 			
-	velocity = velocity.normalized() * speed
+	velocity = velocity.normalized() * movement_speed
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 
@@ -47,6 +50,15 @@ func _draw():
 	var from = $CollisionShape2D.position
 	draw_line(from, from + Vector2.UP * 100, Color(0.0, 1.0, 0.0, 1.0), 2)
 	draw_line(from, from + Vector2.UP * 2, Color(1.0, 0.0, 0.0, 1.0), 10)
+	
+func init(start_position, special_skill_meter):
+	position = start_position
+	
+	#spawn arsenal to fire bullets
+	arsenal = player_arsenal_scene.instantiate()
+	get_parent().add_child(arsenal)
+	arsenal.init(self)
+	arsenal.get_node("FireBombs").skill_meter = special_skill_meter
 
 func _on_afterimage_timer_timeout():
 	#$AnimatedSprite2D.material.set_shader_parameter("flash_intensity", 0.0)

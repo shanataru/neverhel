@@ -96,14 +96,23 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ssix6"]
-radius = 4.80169
+radius = 10.51
 
 [node name="Bullet" instance=ExtResource("1_rqmj8")]
+position = Vector2(0, 18.51)
+collision_mask = 2
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="0"]
+position = Vector2(3.97747, -5.126e-06)
+scale = Vector2(2.03414, 1.05303)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tcaqv")
 frame_progress = 0.924918
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
-position = Vector2(7.5, 0)
+position = Vector2(15, 0)
 shape = SubResource("CircleShape2D_ssix6")
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]

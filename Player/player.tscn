@@ -55,13 +55,15 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7yf6f"]
-radius = 3.82031
+radius = 6.38722
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_kd0jn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_s8hxn")
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1y2ts")
 animation = &"idle"
 frame_progress = 0.30641
@@ -71,11 +73,11 @@ wait_time = 0.05
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 2)
+position = Vector2(5, 3)
 shape = SubResource("CircleShape2D_7yf6f")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-scale = Vector2(0.06, 0.06)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("12_nbbfa")
 
 [connection signal="timeout" from="AnimatedSprite2D/AfterimageTimer" to="." method="_on_afterimage_timer_timeout"]

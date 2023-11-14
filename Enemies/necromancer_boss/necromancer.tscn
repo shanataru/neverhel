@@ -1,6 +1,7 @@
-[gd_scene load_steps=73 format=3 uid="uid://c7g1bph04butt"]
+[gd_scene load_steps=74 format=3 uid="uid://c7g1bph04butt"]
 
 [ext_resource type="Texture2D" uid="uid://bu4aq1rq7fhlk" path="res://Assets/Sprites2D/Necromancer/Necromancer_creativekind-Sheet.png" id="1_2rh55"]
+[ext_resource type="Script" path="res://Enemies/necromancer_boss/necromancer.gd" id="1_bfm2s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvra7"]
 atlas = ExtResource("1_2rh55")
@@ -519,16 +520,27 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_srff5"]
-radius = 13.5
-height = 44.5
+radius = 31.2519
+height = 120.292
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_bfm2s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -45)
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_lca22")
-animation = &"attack_skull"
-frame_progress = 0.954676
+animation = &"idle"
+frame_progress = 0.0155298
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 24.5)
+position = Vector2(0, 17.854)
 shape = SubResource("CapsuleShape2D_srff5")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="DelayedPlayerLocatorTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="DelayedPlayerLocatorTimer" to="." method="_on_locating_player_timer_timeout"]

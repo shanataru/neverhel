@@ -4,6 +4,7 @@ extends Node2D
 @export var usage_cost = 100.0
 @export var max_meter = 100.0
 @export var damage = 100
+@export var is_active = true
 
 @export var particle_scene: PackedScene
 
@@ -26,7 +27,7 @@ func use_special():
 	if skill_meter >= usage_cost:
 		skill_meter -= usage_cost
 		print(skill_meter)
-		var center_pos = get_parent().player.get_node("CollisionShape2D").global_position
+		var center_pos = get_parent().arsenal_owner.get_node("CollisionShape2D").global_position
 		for i in range(particle_amount):
 			var b = particle_scene.instantiate()
 			var angle = -60 + (30 * i) 

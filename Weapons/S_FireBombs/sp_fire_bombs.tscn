@@ -234,6 +234,7 @@ animations = [{
 }]
 
 [node name="emitter" instance=ExtResource("1_n2kn4")]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_ewmwt")

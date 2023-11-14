@@ -6,6 +6,7 @@ signal main_animation_finished
 @export var speed = 300.0
 @export var scale_rate = 0.05
 @export var spawn_center = Vector2.ZERO
+@export var infinite_emitter = false
 
 var velocity = Vector2.UP
 var scale_x = 1.0
@@ -26,4 +27,5 @@ func _process(delta):
 	position += velocity * delta
 
 func on_main_animation_finished():
-	queue_free()
+	if(!infinite_emitter):
+		queue_free()

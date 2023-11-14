@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://otw41m56tfll"]
+[gd_scene load_steps=4 format=3 uid="uid://otw41m56tfll"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kq4j8"]
+[ext_resource type="PackedScene" uid="uid://6o8xsdc4tm6d" path="res://Weapons/arsenal.tscn" id="3_vp6yk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtkqs"]
 size = Vector2(720.25, 25)
@@ -13,6 +14,8 @@ position = Vector2(360, 1020)
 
 [node name="BossMainPosition" type="Marker2D" parent="."]
 position = Vector2(360, 150)
+
+[node name="Arsenal" parent="." instance=ExtResource("3_vp6yk")]
 
 [node name="DeadZoneTest" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
