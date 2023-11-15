@@ -59,7 +59,6 @@ radius = 6.38722
 
 [node name="Area2D" type="Area2D"]
 collision_layer = 2
-collision_mask = 2
 script = ExtResource("1_kd0jn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -84,5 +83,11 @@ texture = ExtResource("12_nbbfa")
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="AnimatedSprite2D/AfterimageTimer" to="." method="_on_afterimage_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

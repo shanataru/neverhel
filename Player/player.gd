@@ -4,7 +4,9 @@ signal player_hit
 signal special_used
 
 enum State {IDLE, MOVING}
+enum HealthState {VULNERABLE, INVINCIBLE, HEALING, DEAD}
 var current_state = State.IDLE
+var current_health_state = HealthState.VULNERABLE
 
 var player_arsenal_scene = preload("res://Weapons/arsenal.tscn")
 
@@ -19,7 +21,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	move_player(delta)
+	move_player(delta)	
 	
 func _input(event):
 	if event.is_action_pressed("special"):
@@ -66,11 +68,6 @@ func init(start_position, special_skill_meter):
 	arsenal.init(self)
 	arsenal.get_node("FireBombs").skill_meter = special_skill_meter
 	
-func start_invincible_frames(duration):
-	$AnimatedSprite2D.material.set_shader_parameter("flash_intensity", 1.0)
-	$CollisionShape2D.disabled = true
-	$InvincibilityTimer.start()
-	
 func _on_afterimage_timer_timeout():
 	#$AnimatedSprite2D.material.set_shader_parameter("flash_intensity", 0.0)
 	if (current_state == State.MOVING):
@@ -81,7 +78,23 @@ func _on_afterimage_timer_timeout():
 		afterimage.texture = $AnimatedSprite2D.sprite_frames.get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.frame)
 		afterimage.scale = $".".get_node("AnimatedSprite2D").scale
 
+func start_invincible_frames(duration):
+	current_health_state = HealthState.INVINCIBLE
+	$CollisionShape2D.set_deferred("disabled", true)
+	$InvincibilityTimer.wait_time = 2.0
+	$InvincibilityTimer.start()
+	$AnimatedSprite2D.material.set_shader_parameter("flash_intensity", 1.0)
 
+	
 func _on_invincibility_timer_timeout():
+	current_health_state = HealthState.VULNERABLE
+	$CollisionShape2D.set_deferred("disabled", false)
 	$AnimatedSprite2D.material.set_shader_parameter("flash_intensity", 0.0)
-	$CollisionShape2D.disabled = false
+	
+func _on_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	start_invincible_frames(2.0)
+	print("iframes")
+
+func _on_flash_timer_timeout():
+	$AnimatedSprite2D.material.set_shader_parameter("flash_intensity", 0.0)
+	print("flash timer timeout")
