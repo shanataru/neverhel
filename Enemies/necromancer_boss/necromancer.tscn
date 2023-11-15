@@ -523,8 +523,8 @@ animations = [{
 radius = 31.2519
 height = 120.292
 
-[node name="Area2D" type="Area2D"]
-collision_layer = 2
+[node name="Necromancer" type="Area2D"]
+collision_layer = 4
 script = ExtResource("1_mbu0l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -540,7 +540,21 @@ shape = SubResource("CapsuleShape2D_srff5")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="DelayedPlayerLocatorTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 autostart = true
 
+[node name="BulletRotator" type="Node2D" parent="."]
+
+[node name="BulletShootTimer" type="Timer" parent="."]
+
+[node name="SkillDuration_bh_rotated" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="ActionTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="use_skill" from="." to="." method="_on_use_skill"]
 [connection signal="timeout" from="DelayedPlayerLocatorTimer" to="." method="_on_locating_player_timer_timeout"]
+[connection signal="timeout" from="BulletShootTimer" to="." method="_on_bullet_shoot_timer_timeout"]
+[connection signal="timeout" from="SkillDuration_bh_rotated" to="." method="_on_skill_duration_bh_rotated_timeout"]
+[connection signal="timeout" from="ActionTimer" to="." method="_on_action_timer_timeout"]

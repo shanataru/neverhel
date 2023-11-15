@@ -18,5 +18,5 @@ position = Vector2(360, 150)
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadZoneTest"]
-position = Vector2(360, 112.5)
+position = Vector2(360, 40)
 shape = SubResource("RectangleShape2D_wtkqs")

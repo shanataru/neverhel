@@ -8,7 +8,7 @@ var player
 
 func _ready():
 	new_game(player_scene)
-	#spawn_boss(boss_scene)
+	spawn_boss(boss_scene)
 
 func new_game(player_character):
 	player = player_character.instantiate()

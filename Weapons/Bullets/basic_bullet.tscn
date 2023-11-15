@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://dhjiowsa4aq4q"]
+
+[ext_resource type="Shader" path="res://Shaders/colorize.gdshader" id="1_akv0g"]
+[ext_resource type="Texture2D" uid="uid://dqkm1ltoxvfpn" path="res://Assets/Sprites2D/Fire Pixel Bullet 16x16/All_Fire_Bullet_Pixel_16x16_05.png" id="1_kbye3"]
+[ext_resource type="Script" path="res://Weapons/Bullets/basic_bullet.gd" id="1_lympr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x08at"]
+shader = ExtResource("1_akv0g")
+shader_parameter/new_color = Color(0.866667, 0.0784314, 0.0980392, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tufsk"]
+atlas = ExtResource("1_kbye3")
+region = Rect2(256, 240, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55hl3"]
+atlas = ExtResource("1_kbye3")
+region = Rect2(288, 240, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53kjk"]
+atlas = ExtResource("1_kbye3")
+region = Rect2(320, 240, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fetrm"]
+atlas = ExtResource("1_kbye3")
+region = Rect2(352, 240, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs44v"]
+atlas = ExtResource("1_kbye3")
+region = Rect2(176, 224, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgdyq"]
+atlas = ExtResource("1_kbye3")
+region = Rect2(192, 224, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7t4w"]
+atlas = ExtResource("1_kbye3")
+region = Rect2(208, 224, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3vpu"]
+atlas = ExtResource("1_kbye3")
+region = Rect2(224, 224, 16, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n76tg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tufsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55hl3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53kjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fetrm")
+}],
+"loop": true,
+"name": &"fireball",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs44v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgdyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7t4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3vpu")
+}],
+"loop": true,
+"name": &"spirit",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4f7by"]
+radius = 16.5843
+height = 61.3952
+
+[node name="basic_bullet" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_lympr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_x08at")
+position = Vector2(-10, 0)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_n76tg")
+animation = &"fireball"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-12, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4f7by")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-3.45707e-06, 0.0992146)
+scale = Vector2(1.34724, 1.35717)
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
