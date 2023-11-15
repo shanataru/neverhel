@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b24kqp7sbyv1a"]
+[gd_scene load_steps=16 format=3 uid="uid://b24kqp7sbyv1a"]
 
 [ext_resource type="PackedScene" uid="uid://70wr6qcv27nt" path="res://Weapons/AbstractClass/bullet.tscn" id="1_rqmj8"]
 [ext_resource type="Texture2D" uid="uid://cexy4oa6aap01" path="res://Assets/Sprites2D/RetroEffects32x32/42.png" id="2_71sgg"]
@@ -47,10 +47,6 @@ region = Rect2(96, 32, 32, 32)
 atlas = ExtResource("2_71sgg")
 region = Rect2(128, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ictwt"]
-atlas = ExtResource("2_71sgg")
-region = Rect2(160, 32, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_tcaqv"]
 animations = [{
 "frames": [{
@@ -86,9 +82,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5rfu8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ictwt")
 }],
 "loop": true,
 "name": &"default",
@@ -98,7 +91,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ssix6"]
 radius = 10.51
 
-[node name="Bullet" instance=ExtResource("1_rqmj8")]
+[node name="bullet_fireball" instance=ExtResource("1_rqmj8")]
 position = Vector2(0, 18.51)
 collision_mask = 2
 

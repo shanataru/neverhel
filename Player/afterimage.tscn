@@ -5,7 +5,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysiu3"]
 shader = ExtResource("1_jqfnp")
-shader_parameter/flash_color = Color(0.219608, 0.227451, 0.356863, 1)
+shader_parameter/flash_color = Color(0.184314, 0.156863, 0.286275, 1)
 shader_parameter/flash_intensity = 0.794
 
 [node name="Afterimage" type="Sprite2D"]

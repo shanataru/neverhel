@@ -37,10 +37,8 @@ func move_player(delta):
 	if velocity.x != 0:
 		if velocity.x < 0:
 			scale.x = -1 * abs(scale.x)
-			#afterimage()
 		else:
 			scale.x = abs(scale.x)
-			#afterimage()
 			
 	velocity = velocity.normalized() * movement_speed
 	position += velocity * delta
@@ -62,8 +60,9 @@ func init(start_position, special_skill_meter):
 
 func _on_afterimage_timer_timeout():
 	#$AnimatedSprite2D.material.set_shader_parameter("flash_intensity", 0.0)
-	var afterimage = preload("res://Player/afterimage.tscn").instantiate();
-	get_parent().add_child(afterimage);
-	afterimage.position = position;
-	afterimage.texture = $AnimatedSprite2D.sprite_frames.get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.frame);
-	afterimage.scale.x = scale.x
+	var afterimage = preload("res://Player/afterimage.tscn").instantiate()
+	get_parent().add_child(afterimage)
+	afterimage.name = "afterimage"
+	afterimage.position = position
+	afterimage.texture = $AnimatedSprite2D.sprite_frames.get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.frame)
+	afterimage.scale = $".".get_node("AnimatedSprite2D").scale

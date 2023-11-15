@@ -36,3 +36,4 @@ func use_special():
 			b.scale_rate = 0.08
 			b.spawn_center = center_pos
 			get_parent().add_child(b)
+			b.name = "special_firebomb"
