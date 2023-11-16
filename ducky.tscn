@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cltufcmv54wx6"]
 
-[ext_resource type="Shader" path="res://flash.gdshader" id="1_i0qj0"]
+[ext_resource type="Shader" path="res://Shaders/flash.gdshader" id="1_i0qj0"]
 [ext_resource type="Texture2D" uid="uid://djml4u8n1m4qm" path="res://Assets/Sprites2D/ducky_3_spritesheet.png" id="2_jhtc1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p7mpd"]

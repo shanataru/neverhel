@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dp25e17a8gyf"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_kd0jn"]
-[ext_resource type="Shader" path="res://flash.gdshader" id="2_j3so6"]
+[ext_resource type="Shader" path="res://Shaders/flash.gdshader" id="2_hvj0l"]
 [ext_resource type="Texture2D" uid="uid://ddb15kjdejxxc" path="res://Assets/Sprites2D/Eleonore/Idle/Idle1.png" id="3_ek7qv"]
 [ext_resource type="Texture2D" uid="uid://cd1r7prmibmpj" path="res://Assets/Sprites2D/Eleonore/Idle/Idle2.png" id="4_ig6gw"]
 [ext_resource type="Texture2D" uid="uid://bw85jsqc43r64" path="res://Assets/Sprites2D/Eleonore/Idle/Idle3.png" id="5_hlc8c"]
@@ -15,9 +15,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s8hxn"]
 resource_local_to_scene = true
-shader = ExtResource("2_j3so6")
-shader_parameter/flash_color = Color(0.764706, 0.780392, 0.886275, 1)
-shader_parameter/flash_intensity = 0.0
+shader = ExtResource("2_hvj0l")
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/max_flash_intenxity = 0.3
+shader_parameter/is_active = false
+shader_parameter/flash_speed = 40.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1y2ts"]
 animations = [{

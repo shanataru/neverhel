@@ -76,25 +76,25 @@ func _on_afterimage_timer_timeout():
 		afterimage.name = "afterimage"
 		afterimage.position = position
 		afterimage.texture = $AnimatedSprite2D.sprite_frames.get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.frame)
-		afterimage.scale = $".".get_node("AnimatedSprite2D").scale
+		afterimage.scale = $".".get_node("AnimatedSprite2D").scale * sign(scale)
 
 func start_invincible_frames(duration):
 	current_health_state = HealthState.INVINCIBLE
 	$CollisionShape2D.set_deferred("disabled", true)
 	$InvincibilityTimer.wait_time = 2.0
 	$InvincibilityTimer.start()
-	$AnimatedSprite2D.material.set_shader_parameter("flash_intensity", 1.0)
+	$AnimatedSprite2D.material.set_shader_parameter("is_active", true)
 
 	
 func _on_invincibility_timer_timeout():
 	current_health_state = HealthState.VULNERABLE
 	$CollisionShape2D.set_deferred("disabled", false)
-	$AnimatedSprite2D.material.set_shader_parameter("flash_intensity", 0.0)
+	$AnimatedSprite2D.material.set_shader_parameter("is_active", false)
 	
 func _on_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	start_invincible_frames(2.0)
 	print("iframes")
 
 func _on_flash_timer_timeout():
-	$AnimatedSprite2D.material.set_shader_parameter("flash_intensity", 0.0)
+	$AnimatedSprite2D.material.set_shader_parameter("is_active", false)
 	print("flash timer timeout")

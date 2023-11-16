@@ -30,13 +30,13 @@ var is_chasing_player = false
 func _ready():
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
-	$AnimatedSprite2D.play()
+	$AnimatedSprite2D.play("idle")
 	prepare_skills()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(is_chasing_player):
-		if(lock_on_player(updated_player_position_x, 5, delta)): #move to player, nutil locked in to last known position
+		if(lock_on_player(updated_player_position_x, 1, delta)): #move to player, nutil locked in to last known position
 			is_chasing_player = false
 			use_skill.emit(selected_skill)
 			current_state = State.SHOOTING

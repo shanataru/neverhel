@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://otw41m56tfll"]
+[gd_scene load_steps=4 format=3 uid="uid://otw41m56tfll"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kq4j8"]
+[ext_resource type="PackedScene" uid="uid://lfffppsiiqmy" path="res://Maps/tm_dungeon.tscn" id="2_kp68g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtkqs"]
 size = Vector2(720.25, 25)
@@ -20,3 +21,5 @@ gravity_scale = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadZoneTest"]
 position = Vector2(360, 40)
 shape = SubResource("RectangleShape2D_wtkqs")
+
+[node name="tm_dungeon" parent="." instance=ExtResource("2_kp68g")]

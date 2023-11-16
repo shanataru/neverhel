@@ -7,6 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x08at"]
 shader = ExtResource("1_akv0g")
 shader_parameter/new_color = Color(0.866667, 0.0784314, 0.0980392, 1)
+shader_parameter/alpha = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tufsk"]
 atlas = ExtResource("1_kbye3")
